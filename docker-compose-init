@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#Configurar este directorio
+DOCKER_COMPOSE_DIR=/opt/docker-compose-files
+
+if [ ! -f "$DOCKER_COMPOSE_DIR/Dockerfile" ]; then
+    echo ""
+    echo "No se encuentra el archivo $DOCKER_COMPOSE_DIR/Dockerfile"
+    exit
+fi
+
+
+if [ ! -f $DOCKER_COMPOSE_DIR/docker-compose.yml ]; then
+    echo ""
+    echo "No se encuentra el archivo $DOCKER_COMPOSE_DIR/docker-compose.yml"
+    exit
+fi
+
+cp $DOCKER_COMPOSE_DIR/Dockerfile .
+cp $DOCKER_COMPOSE_DIR/docker-compose.yml .
+
+echo ""
+echo ""
+echo ""
+echo "    Cambiar el path de la base en docker-compose.yml"
+echo ""
+echo ""
+echo ""
+echo "    Cambiar config/database.yml para que tenga:"
+echo ""
+echo "           # socket: /var/run/mysqld/mysqld.sock"
+echo "             host: db"
+echo ""
+echo "           # password: <%= ENV['DATABASE_PASSWORD'] %>"
+echo ""
+echo ""
